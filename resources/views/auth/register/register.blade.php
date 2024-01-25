@@ -23,6 +23,11 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
+              @if ($errors->has('over_name'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('over_name') }}</strong>
+              </span>
+              @endif
             </div>
             <div class="" style="width:140px">
               <label class=" d-block m-0" style="font-size:13px">名</label>

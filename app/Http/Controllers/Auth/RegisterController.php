@@ -59,7 +59,23 @@ class RegisterController extends Controller
 
     public function registerPost(Request $request)
     {
+        // validation
+        $request -> validate ([
+            'over_name' => 'required|string|max:10',
+            'under_name' => 'required|string|max:10',
+            'over_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u|max:30',
+            'under_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u|max:30',
+            'mail_address' => 'required|max:100|email|unique:users',
+            'sex' => 'required|in:1,2,3',
+            'old_year' => 'required',
+            'old_month' => 'required',
+            'old_day' => 'required',
+            'role' => 'required|in:1,2,3,4',
+            'password' => 'required|max:30|min:8'
+        ]);
+
         DB::beginTransaction();
+
         try{
             $old_year = $request->old_year;
             $old_month = $request->old_month;
@@ -85,7 +101,7 @@ class RegisterController extends Controller
             return view('auth.login.login');
         }catch(\Exception $e){
             DB::rollback();
-            return redirect()->route('loginView');
+            return redirect()->route('loginView')->withInput()->withErrors(['error' => 'ユーザーの登録に失敗しました。']);
         }
     }
 }
