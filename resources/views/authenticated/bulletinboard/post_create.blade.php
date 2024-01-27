@@ -33,6 +33,7 @@
     <form action="{{ route('post.create') }}" method="post" id="postCreate">{{ csrf_field() }}</form>
   </div>
   @can('admin')
+  @if(Auth::user()->role >= 1 && Auth::user()->role <= 3) {{-- 講師のみ表示 --}}
   <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
       <div class="">
@@ -44,6 +45,7 @@
       <form action="{{ route('main.category.create') }}" method="post" id="mainCategoryRequest">{{ csrf_field() }}</form>
     </div>
   </div>
+  @endif
   @endcan
 </div>
 @endsection
