@@ -148,6 +148,7 @@ class PostsController extends Controller
         return response()->json();
     }
 
+    // お気に入りのカウント
     public function likeCounts($post_id){
         return Like::where('like_post_id', $post_id)->count();
     }
