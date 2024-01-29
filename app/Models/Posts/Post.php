@@ -20,6 +20,10 @@ class Post extends Model
         return $this->belongsTo('App\Models\Users\User');
     }
 
+    public function commentCount()
+    {
+        return $this->postComments()->count();
+    }
     public function postComments(){
         return $this->hasMany('App\Models\Posts\PostComment');
     }
