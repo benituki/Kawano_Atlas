@@ -15,6 +15,7 @@ use Auth;
 
 class PostsController extends Controller
 {
+    // 投稿の一覧を表示
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
@@ -38,16 +39,19 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
+    // 投稿の詳細を表示
     public function postDetail($post_id){
         $post = Post::with('user', 'postComments')->findOrFail($post_id);
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 
+    // 新規投稿フォームを表示
     public function postInput(){
         $main_categories = MainCategory::get();
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
+    // 新規投稿
     public function postCreate(PostFormRequest $request){
         $post = Post::create([
             'user_id' => Auth::id(),
@@ -57,23 +61,41 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
 
+    // 投稿編集
     public function postEdit(Request $request){
+        $request -> validate ([
+        //     'post_category_id' => 'required|unique:sub_categories,sub_category',
+            'post_title' => 'required|string|max:100',
+            'post_body' => 'required|string|max:5000',
+        ]);
+
         Post::where('id', $request->post_id)->update([
+            // 'post_category_id' => $request->post_category_id,
             'post_title' => $request->post_title,
             'post' => $request->post_body,
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
 
+    // 投稿削除
     public function postDelete($id){
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
+
+    // 新規メインカテゴリー
     public function mainCategoryCreate(Request $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
 
+    // サブカテゴリー
+    public function subCategoryCreate(Request $request){
+        SubCategory::create(['sub_category' => $request->sub_category_name]);
+        return redirect()->route('post.input');
+    }
+
+    // コメント追加
     public function commentCreate(Request $request){
         PostComment::create([
             'post_id' => $request->post_id,
@@ -83,12 +105,14 @@ class PostsController extends Controller
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
 
+    // 投稿一覧表示
     public function myBulletinBoard(){
         $posts = Auth::user()->posts()->get();
         $like = new Like;
         return view('authenticated.bulletinboard.post_myself', compact('posts', 'like'));
     }
 
+    // お気に入り投稿（いいね）
     public function likeBulletinBoard(){
         $like_post_id = Like::with('users')->where('like_user_id', Auth::id())->get('like_post_id')->toArray();
         $posts = Post::with('user')->whereIn('id', $like_post_id)->get();
@@ -96,6 +120,7 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.post_like', compact('posts', 'like'));
     }
 
+    // お気に入り追加
     public function postLike(Request $request){
         $user_id = Auth::id();
         $post_id = $request->post_id;
@@ -109,6 +134,7 @@ class PostsController extends Controller
         return response()->json();
     }
 
+    // お気に入り解除
     public function postUnLike(Request $request){
         $user_id = Auth::id();
         $post_id = $request->post_id;
@@ -120,5 +146,9 @@ class PostsController extends Controller
              ->delete();
 
         return response()->json();
+    }
+
+    public function likeCounts($post_id){
+        return Like::where('like_post_id', $post_id)->count();
     }
 }
