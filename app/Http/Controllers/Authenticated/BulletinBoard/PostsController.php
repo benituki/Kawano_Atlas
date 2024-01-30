@@ -64,13 +64,11 @@ class PostsController extends Controller
     // 投稿編集
     public function postEdit(Request $request){
         $request -> validate ([
-        //     'post_category_id' => 'required|unique:sub_categories,sub_category',
             'post_title' => 'required|string|max:100',
             'post_body' => 'required|string|max:5000',
         ]);
 
         Post::where('id', $request->post_id)->update([
-            // 'post_category_id' => $request->post_category_id,
             'post_title' => $request->post_title,
             'post' => $request->post_body,
         ]);
@@ -97,6 +95,11 @@ class PostsController extends Controller
 
     // コメント追加
     public function commentCreate(Request $request){
+        // バリエーション
+        $request -> validate ([
+            'comment' => 'required|string|max:255',
+        ]);
+
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
@@ -146,10 +149,5 @@ class PostsController extends Controller
              ->delete();
 
         return response()->json();
-    }
-
-    // お気に入りのカウント
-    public function likeCounts($post_id){
-        return Like::where('like_post_id', $post_id)->count();
     }
 }
