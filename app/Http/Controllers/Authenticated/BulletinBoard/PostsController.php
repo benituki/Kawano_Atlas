@@ -94,7 +94,7 @@ class PostsController extends Controller
     // サブカテゴリー
     public function subCategoryCreate(Request $request){
         $validatedData = $request->validate([
-            'main_category_id' => 'required|exists:main_categories,main_category',
+            'main_category_id' => 'required',
             'sub_category_name' => 'required|string|max:100|unique:sub_categories,sub_category',
         ]);
     

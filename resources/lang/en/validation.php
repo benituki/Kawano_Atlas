@@ -167,7 +167,7 @@ return [
         'role' => '権限',
         'password' => 'パスワード',
         'main_category_name' => 'メインカテゴリー',
-        'main_category_id' => 'メインカテゴリー2',
+        'main_category_id' => 'メインカテゴリー',
         'sub_category_name' => 'サブカテゴリー'
     ],
 
