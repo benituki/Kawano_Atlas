@@ -40,11 +40,33 @@
       </div>
       <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
+
+      {{-- メインカテゴリーを繰り返ししている。 --}}
+      {{-- <ul>
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
         @endforeach
-      </ul>
+      </ul> --}}
+
+      {{-- サブカテゴリーを繰り返ししている。 --}}
+      {{-- <ul>
+        @foreach($subCategories as $subcategory)
+        <li class="main_categories" category_id="{{ $subcategory->id }}"><span>{{ $subcategory->sub_category }}<span></li>
+        @endforeach
+      </ul> --}}
+
+      <ul id="category-list">
+        @foreach($categories as $category)
+        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span>
+          @foreach($category->subcategories as $subcategory)
+          <li class="main_categories" category_id="{{ $subcategory->id }}"> <!-- 修正点 -->
+            <span>{{ $subcategory->sub_category }}</span>
+          </li>
+          @endforeach
+        </li>
+        @endforeach
+    </ul>
+    
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
