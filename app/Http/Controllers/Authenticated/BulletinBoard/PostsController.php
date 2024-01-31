@@ -19,6 +19,8 @@ class PostsController extends Controller
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
+        // SubCategoryモデル内の情報を取得
+        $subCategories = SubCategory::get();
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
@@ -36,7 +38,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'subCategories', 'like', 'post_comment'));
     }
 
     // 投稿の詳細を表示
@@ -53,12 +55,18 @@ class PostsController extends Controller
 
     // 新規投稿
     public function postCreate(PostFormRequest $request){
+        $request -> validate([
+            'post_category_id' => 'required|unique:sub_categories,sub_category',
+            'post_title' => 'required|string|max:100',
+            'post_body' => 'required|string|max:5000',
+        ]);
+
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
-        return redirect()->route('post.show');
+        return redirect()->route('post.show', ['id' => $post->id])->with('success', 'Post created successfully');
     }
 
     // 投稿編集
@@ -83,11 +91,15 @@ class PostsController extends Controller
 
     // 新規メインカテゴリー
     public function mainCategoryCreate(Request $request){
-        $validatedData = $request->validate([
+
+        $request->validate([
             'main_category_name' => 'required|string|max:100|unique:main_categories,main_category',
         ]);
-    
-        MainCategory::create(['main_category' => $validatedData['main_category_name']]);
+
+        MainCategory::create([
+            'main_category' => $request -> main_category_name
+        ]);
+
         return redirect()->route('post.input');
     }
 
@@ -109,7 +121,7 @@ class PostsController extends Controller
     public function commentCreate(Request $request){
         // バリエーション
         $request -> validate ([
-            'comment' => 'required|string|max:255',
+            'comment' => 'required|string|max:2500',
         ]);
 
         PostComment::create([
