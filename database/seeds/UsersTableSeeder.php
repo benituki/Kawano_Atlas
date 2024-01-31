@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
                 'mail_address' => 'test@test.com',
                 'sex' => '1',
                 'birth_day' => '1999-01-25',
-                'role' => '1',
+                'role' => '4',
                 'password' => Hash::make('test1234')
             ],
             [
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 'mail_address' => 'test2@test.com',
                 'sex' => '1',
                 'birth_day' => '1999-01-25',
-                'role' => '2',
+                'role' => '4',
                 'password' => Hash::make('test1234')
             ],
             [
@@ -41,9 +41,20 @@ class UsersTableSeeder extends Seeder
                 'over_name_kana' => 'フカヤ',
                 'under_name_kana' => 'ミツコ',
                 'mail_address' => 'test3@test.com',
-                'sex' => '2',
+                'sex' => '3',
                 'birth_day' => '2000-01-1',
                 'role' => '4',
+                'password' => Hash::make('test1234')
+            ],
+            [
+                'over_name' => '奏多',
+                'under_name' => '治夫',
+                'over_name_kana' => 'カナタ',
+                'under_name_kana' => 'ハルオ',
+                'mail_address' => 'test4@test.com',
+                'sex' => '1',
+                'birth_day' => '1990-01-1',
+                'role' => '1',
                 'password' => Hash::make('test1234')
             ]
         ]);
