@@ -83,13 +83,25 @@ class PostsController extends Controller
 
     // 新規メインカテゴリー
     public function mainCategoryCreate(Request $request){
-        MainCategory::create(['main_category' => $request->main_category_name]);
+        $validatedData = $request->validate([
+            'main_category_name' => 'required|string|max:100|unique:main_categories,main_category',
+        ]);
+    
+        MainCategory::create(['main_category' => $validatedData['main_category_name']]);
         return redirect()->route('post.input');
     }
 
     // サブカテゴリー
     public function subCategoryCreate(Request $request){
-        SubCategory::create(['sub_category' => $request->sub_category_name]);
+        $validatedData = $request->validate([
+            'main_category_id' => 'required|exists:main_categories,main_category',
+            'sub_category_name' => 'required|string|max:100|unique:sub_categories,sub_category',
+        ]);
+    
+        SubCategory::create([
+            'main_category_id' => $validatedData['main_category_id'],
+            'sub_category' => $validatedData['sub_category_name']
+        ]);
         return redirect()->route('post.input');
     }
 
