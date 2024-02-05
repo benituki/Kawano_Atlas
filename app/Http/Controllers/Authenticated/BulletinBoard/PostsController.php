@@ -55,19 +55,38 @@ class PostsController extends Controller
 
     // 新規投稿
     public function postCreate(PostFormRequest $request){
-        $request -> validate([
-            'post_category_id' => 'required|unique:sub_categories,sub_category',
+        $request->validate([
+            'post_category_id' => 'required', // カテゴリは必須ですが、uniqueルールは削除しました
             'post_title' => 'required|string|max:100',
             'post_body' => 'required|string|max:5000',
         ]);
-
+    
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+    
+        // リクエストから送信されたカテゴリIDを取得
+        $category_id = $request->post_category_id;
+    
+        // カテゴリがサブカテゴリーであるかどうかを確認
+        $category = SubCategory::find($category_id);
+        if (!$category) {
+            // もしサブカテゴリーが見つからない場合、メインカテゴリーを確認
+            $mainCategory = MainCategory::find($category_id);
+            if ($mainCategory) {
+                // メインカテゴリーが見つかった場合、そのIDを中間テーブルに保存
+                $post->subCategories()->attach($mainCategory->id);
+            }
+        } else {
+            // もしサブカテゴリーが見つかった場合、そのIDを中間テーブルに保存
+            $post->subCategories()->attach($category->id);
+        }
+    
         return redirect()->route('post.show', ['id' => $post->id])->with('success', 'Post created successfully');
     }
+    
 
     // 投稿編集
     public function postEdit(Request $request){

@@ -55,7 +55,7 @@
         @endforeach
       </ul> --}}
 
-      <ul id="category-list">
+      <ul>
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span>
           @foreach($category->subcategories as $subcategory)
@@ -66,7 +66,6 @@
         </li>
         @endforeach
     </ul>
-    
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
