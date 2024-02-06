@@ -55,17 +55,23 @@
         @endforeach
       </ul> --}}
 
-      <ul>
-        @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span>
-          @foreach($category->subcategories as $subcategory)
-          <li class="main_categories" category_id="{{ $subcategory->id }}"> <!-- 修正点 -->
-            <span>{{ $subcategory->sub_category }}</span>
+    {{-- サブカテゴリーの検索をするためにbladeから値を送る必要がある。 --}}
+    <ul>
+      @foreach($categories as $category)
+      <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span>
+              <ul>
+                  @foreach($category->subcategories as $subcategory)
+                      <li class="main_categories" category_id="{{ $subcategory->id }}">
+                          <a href="{{ route('post.show', ['category_word' => $subcategory->id]) }}">
+                              {{ $subcategory->sub_category }}
+                          </a>
+                      </li>
+                  @endforeach
+              </ul>
           </li>
-          @endforeach
-        </li>
-        @endforeach
-    </ul>
+      @endforeach
+  </ul>
+
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
