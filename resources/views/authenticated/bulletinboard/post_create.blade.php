@@ -8,15 +8,14 @@
       <select class="w-100" form="postCreate" name="post_category_id">
         <option selected disabled>----</option> <!-- デフォルトの選択肢 -->
         @foreach($main_categories as $main_category)
-        <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
+        <option disabled>{{ $main_category->main_category }}</option> <!-- メインカテゴリーは選択不可にする -->
         <!-- サブカテゴリー表示 -->
         <div>
-          @foreach($main_category->subCategories as $sub_category)
-          <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
-          @endforeach
+            @foreach($main_category->subCategories as $sub_category)
+            <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
+            @endforeach
         </div>
-      </optgroup>
-      @endforeach
+        @endforeach
     </select>
   </div>
   <div class="mt-3">
