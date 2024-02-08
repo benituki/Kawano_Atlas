@@ -41,20 +41,6 @@
       <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
 
-      {{-- メインカテゴリーを繰り返ししている。 --}}
-      {{-- <ul>
-        @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
-        @endforeach
-      </ul> --}}
-
-      {{-- サブカテゴリーを繰り返ししている。 --}}
-      {{-- <ul>
-        @foreach($subCategories as $subcategory)
-        <li class="main_categories" category_id="{{ $subcategory->id }}"><span>{{ $subcategory->sub_category }}<span></li>
-        @endforeach
-      </ul> --}}
-
     {{-- サブカテゴリーの検索をするためにbladeから値を送る必要がある。 --}}
     <ul>
       @foreach($categories as $category)
