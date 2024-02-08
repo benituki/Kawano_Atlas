@@ -171,6 +171,7 @@ return [
         'sub_category_name' => 'サブカテゴリー',
         'post_title' => 'タイトル',
         'post_body' => '投稿内容',
+        'comment' => 'コメント',
     ],
 
 ];
