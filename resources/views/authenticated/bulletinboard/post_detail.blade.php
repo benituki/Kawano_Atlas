@@ -10,6 +10,14 @@
             {{ $subcategory->sub_category }}
             @endforeach
           </div>
+          <div>
+            @if ($errors->has('post_title'))
+            <div>
+                <strong>{{ $errors->first('post_title') }}</strong>
+            </div>
+            @endif
+
+          </div>
           {{-- 投稿者のみの編集削除 --}}
           @if(Auth::check() && Auth::user()->id === $post->user_id)
           <div>
@@ -28,6 +36,11 @@
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
+        @if ($errors->has('post_body'))
+        <div>
+            <strong>{{ $errors->first('post_body') }}</strong>
+        </div>
+        @endif
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">
