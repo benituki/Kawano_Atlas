@@ -5,7 +5,10 @@
     <div class="m-3 detail_container">
       <div class="p-3">
         <div class="detail_inner_head">
-          <div>
+          <div class="category_btn">
+            @foreach($post->subcategories as $subcategory)
+            {{ $subcategory->sub_category }}
+            @endforeach
           </div>
           {{-- 投稿者のみの編集削除 --}}
           @if(Auth::check() && Auth::user()->id === $post->user_id)
