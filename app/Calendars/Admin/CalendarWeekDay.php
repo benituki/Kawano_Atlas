@@ -25,24 +25,40 @@ class CalendarWeekDay{
 
   function dayPartCounts($ymd){
     $html = [];
-    $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
-    $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
-    $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+
+    // 1部の予約設定を取得
+    $one_part_settings = ReserveSettings::with('users')
+                            ->where('setting_reserve', $ymd)
+                            ->where('setting_part', '1')
+                            ->first();
+    $one_part_count = $one_part_settings ? $one_part_settings->users->count() : 0;
+
+    // 2部の予約設定を取得
+    $two_part_settings = ReserveSettings::with('users')
+                            ->where('setting_reserve', $ymd)
+                            ->where('setting_part', '2')
+                            ->first();
+    $two_part_count = $two_part_settings ? $two_part_settings->users->count() : 0;
+
+    // 3部の予約設定を取得
+    $three_part_settings = ReserveSettings::with('users')
+                            ->where('setting_reserve', $ymd)
+                            ->where('setting_part', '3')
+                            ->first();
+    $three_part_count = $three_part_settings ? $three_part_settings->users->count() : 0;
 
     $html[] = '<div class="text-left">';
-    if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
-    }
-    if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
-    }
-    if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
-    }
+    // 1部の情報を表示
+    $html[] = '<p class="day_part m-0 pt-1">1部 '. $one_part_count .'</p>';
+    // 2部の情報を表示
+    $html[] = '<p class="day_part m-0 pt-1">2部 '. $two_part_count .'</p>';
+    // 3部の情報を表示
+    $html[] = '<p class="day_part m-0 pt-1">3部 '. $three_part_count .'</p>';
     $html[] = '</div>';
 
     return implode("", $html);
-  }
+}
+
 
 
   function onePartFrame($day){
