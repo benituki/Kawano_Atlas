@@ -40,13 +40,15 @@ class CalendarView{
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="calendar-td">';
+        // カレンダー過去と未来。
+        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
+          $html[] = '<td class="calendar-td" style="background-color: rgb(192, 192, 192);">';
         }else{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
         $html[] = $day->render();
 
+        // 予約状況
         if(in_array($day->everyDay(), $day->authReserveDay())){
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
@@ -56,8 +58,8 @@ class CalendarView{
           }else if($reservePart == 3){
             $reservePart = "リモ3部";
           }
-          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'. $reservePart .'参加'.'</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
