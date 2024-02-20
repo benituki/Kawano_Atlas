@@ -29,9 +29,6 @@ class CalendarWeekDay{
    }
 
    function selectPart($ymd){
-    if ($this->carbon->lt(Carbon::today())) {
-      return "予約受付終了";
-  }
      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
