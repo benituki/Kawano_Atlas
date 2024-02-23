@@ -48,12 +48,15 @@ class CalendarWeekDay{
     $three_part_count = $three_part_settings ? $three_part_settings->users->count() : 0;
 
     $html[] = '<div class="text-left">';
-    // 1部の情報を表示
-    $html[] = '<p class="day_part m-0 pt-1">1部 '. $one_part_count .'</p>';
-    // 2部の情報を表示
-    $html[] = '<p class="day_part m-0 pt-1">2部 '. $two_part_count .'</p>';
-    // 3部の情報を表示
-    $html[] = '<p class="day_part m-0 pt-1">3部 '. $three_part_count .'</p>';
+
+    // 1部のリンク
+    $html[] = '<a href="/calendar/' . $ymd . '/1">' . '<p class="day_part m-0 pt-1">1部' . '</a>' . $one_part_count .'</p>';
+
+    // 2部のリンク
+    $html[] = '<a href="/calendar/' . $ymd . '/2">' . '<p class="day_part m-0 pt-1">2部' . '</a> '. $two_part_count .'</p>';
+
+    // 3部のリンク
+    $html[] = '<a href="/calendar/' . $ymd . '/3">' . '<p class="day_part m-0 pt-1">3部 '. '</a> '.  $three_part_count .'</p>';
     $html[] = '</div>';
 
     return implode("", $html);
