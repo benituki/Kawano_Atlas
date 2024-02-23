@@ -13,13 +13,15 @@
         </tr>
         <tr class="text-center">
           <!-- 予約した人の情報を表示 -->
-          @foreach ($reservePersons as $reservePerson)
-          @foreach ($reservePerson->users as $user)
-          <td class="w-25">{{ $user->id }}</td>
-          <td class="w-25">{{ $user->over_name }} {{ $user->under_name }}</td>
-          <td class="w-25">リモート</td>
-          @endforeach
-          @endforeach
+            @foreach ($reservePersons as $reservePerson)
+                @foreach ($reservePerson->users as $user)
+                    <tr class="text-center">
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->over_name }} {{ $user->under_name }}</td>
+                        <td>リモート</td>
+                    </tr>
+                @endforeach
+            @endforeach
         </tr>
       </table>
     </div>
