@@ -24,7 +24,7 @@ class CalendarsController extends Controller
         try{
             $getPart = $request->getPart;
             $getDate = $request->getData;
-            // dd($getPart, $getDate);
+            
             // array_filterはコールバック、array_combineは配列の結合
             // 日付と時間を結合、一致しているかの確認。
             // 上記を$reserveDaysに格納。
@@ -55,19 +55,16 @@ class CalendarsController extends Controller
     }
 
     public function delete(Request $request){
-        // リクエストから予約日と予約時間を取得
-        $getDate = $request->input('getData');
-        $getPart = $request->input('getPart');
-
-        // 予約をキャンセルする処理
-        // 例えば、Reservationモデルを使ってデータベースから該当の予約を削除するなどの処理を行います
-        // 以下は一般的な例です。適切なデータベース操作に置き換えてください
-        Reservation::where('setting_reserve', $getDate)
-                   ->where('setting_part', $getPart)
-                   ->delete();
-
-        // キャンセル処理後のリダイレクトなど、必要な処理を追加
-        return redirect()->back()->with('success', '予約がキャンセルされました');
+        $getPart = $request->input('setting_part');
+        $getDate = $request->input('setting_reserve');
+        // dd($getPart, $getDate);
+        $reserve_settings = ReserveSettings::where('setting_reserve', $getDate)
+        ->where('setting_part', $getPart)
+        ->first();
+        
+        $reserve_settings->increment('limit_users');
+        $reserve_settings->users()->detach(Auth::id());
+        
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
-    
 }
