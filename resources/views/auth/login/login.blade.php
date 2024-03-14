@@ -14,8 +14,9 @@
 </head>
 <body>
   <form action="{{ route('loginPost') }}" method="POST">
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-      <div class="border vh-50 w-25">
+    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center; background-color:#ecedf4;">
+      <img class="hed-icon" style="position: absolute; top: 150px;" src="{{ asset('image/atlas-black.png') }}">
+      <div class="border vh-50 w-25" style="background-color:white; border-radius: 20px; box-shadow: 0 20px 20px rgba(0, 0, 0, 0.16);">
         <div class="w-75 m-auto pt-5">
           <label class="d-block m-0" style="font-size:13px;">メールアドレス</label>
           <div class="border-bottom border-primary w-100">
@@ -32,7 +33,7 @@
           <input type="submit" class="btn btn-primary" value="ログイン">
         </div>
         <div class="text-center">
-          <a href="{{ route('registerView') }}">新規登録</a>
+          <a href="{{ route('registerView') }}">新規登録はこちら</a>
         </div>
       </div>
       {{ csrf_field() }}
