@@ -19,18 +19,22 @@
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
-    <form action="{{ route('deleteParts') }}" method="GET">
+    <form id="account_form" action="{{ route('deleteParts') }}" method="POST">
       <div class="w-100">
         <div class="modal-inner-setting w-50 m-auto">
           <p class="reservation_date">予約日：</p>
+          <input type="hidden" class="date-cancel" name="getData" value="" form="reserveParts">
         </div>
         <div class="modal-inner-part w-50 m-auto pt-3 pb-3">
           <p class="reservation_time">予約時間：</p>
+          <input type="hidden" class="time-cancel" name="getPart" value="" form="reserveParts">
+        </div>
+        <div class="w-50 m-auto">
+          <p>上記の予約をキャンセルしてもよろしいですか？</p>
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block " href="#">閉じる</a>
-          <input type="hidden" id="reservation_id" name="id">
-          <input type="submit" class="btn btn-primary d-block" value="キャンセル">
+          <button type="submit" class="btn btn-primary d-block">キャンセル</button>
         </div>
       </div>
       @csrf

@@ -52,17 +52,17 @@ class CalendarView{
         if(in_array($day->everyDay(), $day->authReserveDay())){
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
-            $reservePart = "リモ1部";
+            $reservePart = "1";
           }else if($reservePart == 2){
-            $reservePart = "リモ2部";
+            $reservePart = "2";
           }else if($reservePart == 3){
-            $reservePart = "リモ3部";
+            $reservePart = "3";
           }
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'. $reservePart .'参加'.'</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" data-target="modal" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part= '. $reservePart .'>'. $reservePart .'</button>';
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" data-target="modal" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part= '.$reservePart.'>'. 'リモ'.$reservePart .'部'.'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
