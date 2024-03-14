@@ -32,8 +32,6 @@
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
           <a class="js-modal-close btn btn-danger d-inline-block " href="#">閉じる</a>
-          <input type="hidden" class="date-cancel" name="getData[]" value="" form="deleteParts">
-          <input type="hidden" class="time-cancel" name="getPart[]" value="" form="deleteParts">
           <button type="submit" class="btn btn-primary d-block">キャンセル</button>
         </div>
       </div>
