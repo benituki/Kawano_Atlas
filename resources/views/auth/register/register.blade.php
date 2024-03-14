@@ -14,13 +14,13 @@
 </head>
 <body>
   <form action="{{ route('registerPost') }}" method="POST">
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-      <div class="w-25 vh-75 border p-3">
+    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center; background-color:#ecedf4;">
+      <div class="w-25 vh-75 border p-3" style="background-color:#ffffff; border-radius: 20px; box-shadow: 0 20px 20px rgba(0, 0, 0, 0.16);">
         <div class="register_form">
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
               @if ($errors->has('over_name'))
-              <div>
+              <div class="error_message">
                   <strong>{{ $errors->first('over_name') }}</strong>
               </div>
               @endif
@@ -29,13 +29,13 @@
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
             </div>
-            @if ($errors->has('under_name'))
-            <div>
-                <strong>{{ $errors->first('under_name') }}</strong>
-            </div>
-            @endif
             <div class="" style="width:140px">
-              <label class=" d-block m-0" style="font-size:13px">名</label>
+              @if ($errors->has('under_name'))
+              <div class="error_message">
+                  <strong>{{ $errors->first('under_name') }}</strong>
+              </div>
+              @endif
+              <label class="d-block m-0" style="font-size:13px">名</label>
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
               </div>
@@ -44,7 +44,7 @@
           <div class="d-flex mt-3" style="justify-content:space-between">
             <div class="" style="width:140px">
               @if ($errors->has('over_name_kana'))
-              <div>
+              <div class="error_message">
                   <strong>{{ $errors->first('over_name_kana') }}</strong>
               </div>
               @endif
@@ -55,7 +55,7 @@
             </div>
             <div class="" style="width:140px">
               @if ($errors->has('under_name_kana'))
-              <div>
+              <div class="error_message">
                   <strong>{{ $errors->first('under_name_kana') }}</strong>
               </div>
               @endif
@@ -67,7 +67,7 @@
           </div>
           <div class="mt-3">
             @if ($errors->has('mail_address'))
-            <div>
+            <div class="error_message">
                 <strong>{{ $errors->first('mail_address') }}</strong>
             </div>
             @endif
@@ -79,7 +79,7 @@
         </div>
         <div class="mt-3">
           @if ($errors->has('sex'))
-          <div>
+          <div class="error_message">
               <strong>{{ $errors->first('sex') }}</strong>
           </div>
           @endif
@@ -92,7 +92,7 @@
         </div>
         <div class="mt-3">
           @if ($errors->has('old_year'))
-          <div>
+          <div class="error_message">
               <strong>{{ $errors->first('old_year') }}</strong>
           </div>
           @endif
@@ -127,7 +127,7 @@
             <option value="2010">2010</option>
           </select>
           @if ($errors->has('old_month'))
-          <div>
+          <div class="error_message">
               <strong>{{ $errors->first('old_month') }}</strong>
           </div>
           @endif
@@ -185,7 +185,7 @@
           <label style="font-size:13px">月</label>
         </div>
         @if ($errors->has('role'))
-        <div>
+        <div class="error_message">
             <strong>{{ $errors->first('role') }}</strong>
         </div>
         @endif
@@ -202,7 +202,7 @@
         </div>
         <div class="select_teacher d-none">
           @if ($errors->has('subject[]'))
-          <div>
+          <div class="error_message">
               <strong>{{ $errors->first('subject[]') }}</strong>
           </div>
           @endif
@@ -216,7 +216,7 @@
         </div>
         <div class="mt-3">
           @if ($errors->has('password'))
-          <div>
+          <div class="error_message">
               <strong>{{ $errors->first('password') }}</strong>
           </div>
           @endif
@@ -227,7 +227,7 @@
         </div>
         <div class="mt-3">
           @if ($errors->has('password'))
-          <div>
+          <div class="error_message">
               <strong>{{ $errors->first('password') }}</strong>
           </div>
           @endif
@@ -240,7 +240,7 @@
           <input type="submit" class="btn btn-primary register_btn" disabled value="新規登録" onclick="return confirm('登録してよろしいですか？')">
         </div>
         <div class="text-center">
-          <a href="{{ route('loginView') }}">ログイン</a>
+          <a href="{{ route('loginView') }}">ログインはこちら</a>
         </div>
       </div>
       {{ csrf_field() }}
