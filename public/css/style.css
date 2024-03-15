@@ -15,7 +15,7 @@ li{
 
 /* サイドバー */
 .sidebar{
-  width:150px;
+  width:200px;
   height:100vh;
   background-color:#03AAD2;
   font-weight:bold;
@@ -25,6 +25,12 @@ li{
 }
 .sidebar p a{
   color:#FFF;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.sidebar img{
+  width: 25px;
 }
 
 /* トップページ */

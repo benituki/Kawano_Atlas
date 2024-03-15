@@ -19,15 +19,15 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><a href="{{ route('top.show') }}">トップ</a></p>
-      <p><a href="/logout">ログアウト</a></p>
-      <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <p><img src="{{ '/image/top.png' }}"><a href="{{ route('top.show') }}">トップ</a></p>
+      <p><img src="{{ '/image/logout.png' }}"><a href="/logout">ログアウト</a></p>
+      <p><img src="{{ '/image/reservation .png' }}"><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
       @if(Auth::user()->role >= 1 && Auth::user()->role <= 3) {{-- 講師のみ表示 --}}
-      <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-      <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+      <p><img src="{{ '/image/frame_check.png' }}"><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+      <p><img src="{{ '/image/quota_registration.png' }}"><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
       @endif
-      <p><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <p><img src="{{ '/image/bbs.png' }}"><a href="{{ route('post.show') }}">掲示板</a></p>
+      <p><img src="{{ '/image/users.png' }}"><a href="{{ route('user.show') }}">ユーザー検索</a></p>
       @show
     </div>
     <div class="main-container">
