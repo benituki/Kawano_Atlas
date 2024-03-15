@@ -37,6 +37,7 @@ li{
 .user_status{
   border-radius:10px;
   background:#FFF;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.16);
 }
 
 /* スクール予約関連 */
