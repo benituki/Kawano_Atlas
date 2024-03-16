@@ -133,6 +133,71 @@ li{
   color:red;
 }
 
+/* 掲示板　サイド */
+.other_area div {
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.other_area p{
+margin-top: 20px;
+}
+/* 投稿 */
+.post_input a{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem;
+  background:#03AAD2;
+  border: 2px solid #03AAD2;
+  border-radius:10px;
+  color: #fff;
+}
+
+.post_input a:hover{
+  color: #fff;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+/* 検索 */
+.keyword {
+  box-sizing: border-box;
+  position: relative;
+  border: 0.1px solid #999;
+  display: block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  height: 2.3em;
+  width: 100%;
+  overflow: hidden;
+}
+
+.keyword input[type="text"] {
+  border: none;
+  height: 2.0em;
+  width: 100%;
+  background-color:transparent;
+}
+
+.keyword input[type="text"]:focus {
+  outline: 0;
+}
+
+.keyword input[type="submit"] {
+  cursor: pointer;
+  font-family: FontAwesome;
+  border: none;
+  background: #03AAD2;
+  color: #fff;
+  position: absolute;
+  width: 3.5em;
+  height: 3.0em;
+  right:0px;
+  top: -3px;
+  outline : none;
+}
+
 /* 掲示板 詳細画面 */
 .contributor{
   font-size:12px;
@@ -185,26 +250,67 @@ li{
   background:#FFF;
   border-radius:10px;
 }
+
 .category_box{
   border-radius:5px;
-  padding:3px;
-  background:#999;
+  padding:5px;
+  /* background:#999; */
   font-size:10px;
   color:#FFF;
+  font-size: 15px;
 }
+
+.category_box a{
+  color: black;
+}
+
 .category_btn{
+  width: 45%;
+  height: 40px;
   font-size:12px;
-  border-radius:5px;
+  border-radius:10px;
   padding:0 5px;
   border:none;
   background:#999;
   color:#FFF;
+  display: inline-block;
+
 }
+
+.category_btn[name="like_posts"]{
+  background-color: #ffbfe4;
+}
+.category_btn[name="my_posts"]{
+  background-color: #ffb049;
+  float: right;
+}
+
+.mein_category_text, .sub_category_text{
+  border-bottom: 1px solid #000000;
+}
+.sub_category_text{
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.sub_category a, .sub_category a:hover {
+  text-decoration: none; /* 下線をなくす */
+  color: #000; /* リンクのカラーを変更する */
+}
+
 .main_categories span,
 .sub_categories li input{
+  max-width: 100%;
+  font-size: 20px;
   list-style:none;
   cursor:pointer;
+
 }
+
+.toggle_arrow{
+  float: right;
+}
+
 
 /* ユーザー検索 */
 .reserve_users_area{

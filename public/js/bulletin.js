@@ -63,4 +63,13 @@ $(function () {
     return false;
   });
 
+  $(document).ready(function() {
+    $('.main_categories').on('click', function() {
+      $(this).children('ul').toggle();
+      $(this).find('.toggle_arrow').text(function(_, text) {
+        return text === '∨' ? '∧' : '∨';
+      });
+    });
+  });
+
 });

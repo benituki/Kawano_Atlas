@@ -33,8 +33,8 @@
   </div>
   <div class="other_area border w-25">
     <div class="border m-4">
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
+      <div class="post_input"><a href="{{ route('post.input') }}">投稿</a></div>
+      <div class="keyword">
         <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
         <input type="submit" value="検索" form="postSearchRequest">
       </div>
@@ -42,22 +42,30 @@
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
 
     {{-- サブカテゴリーの検索をするためにbladeから値を送る必要がある。 --}}
+    <p>カテゴリー検索</p>
     <ul>
       @foreach($categories as $category)
-      <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span>
-              <ul>
-                  @foreach($category->subcategories as $subcategory)
-                      <li class="main_categories" category_id="{{ $subcategory->id }}">
-                          <a href="{{ route('post.show', ['category_word' => $subcategory->id]) }}">
-                              {{ $subcategory->sub_category }}
-                          </a>
-                      </li>
-                  @endforeach
-              </ul>
-          </li>
-      @endforeach
-  </ul>
+      <li class="main_categories" category_id="{{ $category->id }}">
+        <div class="mein_category_text">
+          <span>{{ $category->main_category }}</span>
+          <span class="toggle_arrow">∨</span>
+        </div>
+        <ul style="display: none;">
 
+          @foreach($category->subcategories as $subcategory)
+          <li class="sub_category" category_id="{{ $subcategory->id }}">
+            <a href="{{ route('post.show', ['category_word' => $subcategory->id]) }}">
+              <div class="sub_category_text">
+                {{ $subcategory->sub_category }}
+              </div>
+            </a>
+          </li>
+          @endforeach
+
+        </ul>
+      </li>
+      @endforeach
+    </ul>
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
