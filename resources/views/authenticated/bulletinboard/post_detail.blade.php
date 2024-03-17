@@ -5,14 +5,14 @@
     <div class="m-3 detail_container">
       <div class="p-3">
         <div class="detail_inner_head">
-          <div class="category_btn">
+          <div class="sub_category_look">
             @foreach($post->subcategories as $subcategory)
             {{ $subcategory->sub_category }}
             @endforeach
           </div>
           <div>
             @if ($errors->has('post_title'))
-            <div>
+            <div class="error_message">
                 <strong>{{ $errors->first('post_title') }}</strong>
             </div>
             @endif
@@ -22,7 +22,7 @@
           @if(Auth::check() && Auth::user()->id === $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
+            <a class="detail" href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
           @endif
         </div>
@@ -63,7 +63,7 @@
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
         @if ($errors->has('comment'))
-        <div>
+        <div class="error_message">
             <strong>{{ $errors->first('comment') }}</strong>
         </div>
         @endif

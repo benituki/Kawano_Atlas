@@ -117,8 +117,21 @@ li{
   background:#FFF;
   border-radius:10px;
 }
+.user_names{
+  color: #999;
+  font-weight: bold;
+}
+.post_title a,
+.post_title a:hover{
+  color: #000;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
 .post_bottom_area{
   justify-content: space-between;
+  float: right;
+  margin-top: -20px;
 }
 .like_btn,
 .un_like_btn{
@@ -131,6 +144,15 @@ li{
 .error_message{
   font-size:12px;
   color:red;
+}
+.sub_category_look{
+  background-color: #03AAD2;
+  font-size:12px;
+  border-radius:10px;
+  padding: 10px 10px;
+  border:none;
+  color:#FFF;
+  display: inline-block;
 }
 
 /* 掲示板　サイド */
@@ -153,7 +175,6 @@ margin-top: 20px;
   border-radius:10px;
   color: #fff;
 }
-
 .post_input a:hover{
   color: #fff;
   vertical-align: middle;
@@ -200,12 +221,13 @@ margin-top: 20px;
 
 /* 掲示板 詳細画面 */
 .contributor{
-  font-size:12px;
+  font-size:15px;
+  margin-top: 5px;
   color:#999;
   font-weight:bold;
 }
 .detsail_post_title{
-  font-size:14px;
+  font-size:20px;
 }
 .detsail_post{
   font-size:12px;
@@ -217,6 +239,19 @@ margin-top: 20px;
 }
 .edit-modal-open{
   cursor:pointer;
+  background-color: #0069d9;
+}
+.detail{
+  cursor:pointer;
+  background-color: #dc3545;
+}
+.edit-modal-open, .detail{
+  font-size:12px;
+  border-radius:10px;
+  padding: 10px 30px;
+  border:none;
+  color:#FFF;
+  display: inline-block;
 }
 .modal-inner-body textarea{
   height:150px;
@@ -274,7 +309,6 @@ margin-top: 20px;
   background:#999;
   color:#FFF;
   display: inline-block;
-
 }
 
 .category_btn[name="like_posts"]{
