@@ -350,33 +350,125 @@ margin-top: 20px;
 .reserve_users_area{
   display:flex;
   flex-wrap:wrap;
-  width:800px;
+  /* width:800px; */
   margin:10px auto;
   height:80vh;
   overflow: scroll;
   padding:10px;
-  background:#FFF;
+  /* background:#FFF; */
   border-radius:5px;
 }
 .reserve_users_area span{
   font-size:12px;
 }
 .one_person{
+  margin: 10px;
   width:250px;
-  height:250px;
+  height:300px;
+  background-color: #FFF;
+  border-radius:10px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.16);
+}
+.one_person div{
+  margin: 10px;
+}
+
+.search_keyword {
+  background-color: #e0e0e0; /* 薄いグレーの背景色 */
+  border-radius: 10px; /* 角丸 */
+  padding: 5px; /* 内側の余白 */
+  width: 80%;
+}
+.search_keyword p {
+  margin: 0; /* 検索テキストの余白をリセット */
+}
+.free_word {
+  border: none; /* 枠線を削除 */
+  outline: none; /* フォーカス時の枠線を削除 */
+  background-color: transparent; /* 背景色を透明に */
+  width: 80%; /* 幅を100%に */
+  padding: 5px; /* 内側の余白 */
+}
+/* コンテナのスタイル */
+.container {
+  max-width: 400px; /* コンテナの最大幅を400pxに制限 */
+  margin: 50px auto; /* 上下に50pxのマージンを持たせ、左右を自動調整 */
+  text-align: center; /* コンテナ内のテキストを中央揃えにする */
+}
+/* セレクトボックスのスタイル */
+.search_area select {
+  background-color: #e0e0e0;
+  width: 40%; /* セレクトボックスの幅を100%にする */
+  padding: 10px; /* セレクトボックスの内側に10pxのパディングを持たせる */
+  border: 1px solid #e0e0e0; /* 1pxの灰色の境界線を追加 */
+  border-radius: 20px; /* 角を丸くする */
+  appearance: none; /* ブラウザのデフォルトのスタイルを無効化 */
+}
+/* セレクトボックスがフォーカスされた時のスタイル */
+.search_area select:focus {
+  outline: none; /* フォーカス時のアウトラインを削除 */
+  border-color: #007bff; /* 境界線の色を青に変更 */
+}
+/* セレクトボックスのオプションのスタイル */
+.search_area select option {
+  background-color: white; /* オプションの背景色を白に設定 */
+}
+.search{
+  margin-top: 15px;
+}
+.search_btn input[type="submit"]{
+  margin: 50px;
+  cursor: pointer;
+  font-family: FontAwesome;
+  font-size: 15px;
+  border: none;
+  background: #03AAD2;
+  border: 1px solid #03AAD2;
+  border-radius: 10px;
+  color: #fff;
+  outline : none;
+  width: 300px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.additional {
+  display: inline-block;
+}
+.search_conditions{
+  border-bottom: 1px solid #000000;
 }
 .search_conditions span{
   cursor:pointer;
+  font-size: 20px;
 }
 .search_conditions_inner{
   display:none;
-  background:#FFF;
+  background-color: transparent;
 }
 .subject_edit_btn{
   font-size:12px;
   color:#0000FF;
   cursor:pointer;
 }
+/* リセットボタン */
+.search_reset input{
+  border: none;
+  font-size: 20px;
+  text-align:center;
+  margin-left: 150px;
+  color: #03AAD2;
+}
+.search_reset input:hover{
+  font-size: 22px;
+  color: #000000;
+}
+
 .subject_inner{
   display:none;
+}
+.search_conditions_inner label{
+  margin-top: 10px auto;
+  font-size: 20px;
 }
