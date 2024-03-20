@@ -8,5 +8,8 @@ $(function () {
 
   $('.subject_edit_btn').click(function () {
     $('.subject_inner').slideToggle();
+    $(this).find('.subject_toggle_arrow').text(function(_, text) {
+      return text === '∨' ? '∧' : '∨';
+    });
   });
 });
