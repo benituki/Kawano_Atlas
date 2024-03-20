@@ -42,7 +42,7 @@ class CalendarView{
 
         // カレンダー過去と未来。
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
-          $html[] = '<td class="calendar-td" style="background-color: rgb(192, 192, 192);">';
+          $html[] = '<td class="calendar-td" style="background-color: #dcdcdc;">';
         }else{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
