@@ -67,7 +67,7 @@ class CalendarView{
           }
         }else{
           // $keyと$valueの要素が一致していない。($getDate,getPart)その中で一番少ないgetPartを出力する必要がある。
-          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">予約受付終了';
           }else{
             $html[] = $day->selectPart($day->everyDay());
