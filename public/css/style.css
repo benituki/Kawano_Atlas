@@ -486,3 +486,17 @@ margin-top: 20px;
   margin-top: 10px auto;
   font-size: 20px;
 }
+
+/* ユーザーテーブル：予約詳細確認画面 */
+.users-table{
+  height: 50px;
+}
+.users-table tr:nth-child(even) {
+  background-color: #cdf2ff; /* 偶数行の背景色 */
+}
+.users-table tr:nth-child(odd) {
+  background-color: #ffffff; /* 奇数行の背景色 */
+
+}
+
+
