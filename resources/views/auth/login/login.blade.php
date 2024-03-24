@@ -15,7 +15,7 @@
 <body>
   <form action="{{ route('loginPost') }}" method="POST">
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center; background-color:#ecedf4;">
-      <img class="hed-icon" style="position: absolute; top: 150px;" src="{{ asset('image/atlas-black.png') }}">
+      <img class="hed-icon" style="position: absolute; width: 10%; margin-top: -30%;" src="{{ asset('image/atlas-black.png') }}">
       <div class="border vh-50 w-25" style="background-color:white; border-radius: 20px; box-shadow: 0 20px 20px rgba(0, 0, 0, 0.16);">
         <div class="w-75 m-auto pt-5">
           <label class="d-block m-0" style="font-size:13px;">メールアドレス</label>
