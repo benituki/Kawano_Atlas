@@ -12,13 +12,30 @@ ul,
 li{
   list-style:none;
 }
+/* 水平方向のスクロールバー */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 垂直方向のスクロールバー */
+::-webkit-scrollbar-vertical {
+  display: none;
+}
+
+/* 両方の方向のスクロールバー */
+::-webkit-scrollbar-track {
+  display: none;
+}
 
 /* サイドバー */
 .sidebar{
-  width:200px;
-  height:100vh;
-  background-color:#03AAD2;
-  font-weight:bold;
+  position: fixed; /* サイドバーを固定位置に配置 */
+  top: 0; /* 画面上端からの位置 */
+  left: 0; /* 画面左端からの位置 */
+  width: 200px;
+  height: 100%; /* 画面の高さいっぱいにサイドバーを広げる */
+  background-color: #03AAD2;
+  font-weight: bold;
 }
 .main-container{
   width:100%;
@@ -56,7 +73,7 @@ li{
 .calendar-td{
   min-width:100px;
 }
-.day_part{
+.day_part {
   color:#494949;
   font-size:12px;
 }
