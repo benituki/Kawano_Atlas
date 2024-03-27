@@ -36,11 +36,6 @@
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
-        @if ($errors->has('post_body'))
-        <div>
-            <strong>{{ $errors->first('post_body') }}</strong>
-        </div>
-        @endif
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">
@@ -85,6 +80,11 @@
           <input type="text" name="post_title" placeholder="タイトル" class="w-100">
         </div>
         <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
+          @if ($errors->has('post_body'))
+          <div class="error_message">
+              <strong>{{ $errors->first('post_body') }}</strong>
+          </div>
+          @endif
           <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
         </div>
         <div class="w-50 m-auto edit-modal-btn d-flex">
