@@ -53,10 +53,10 @@ class CalendarWeekDay{
     $html[] = '<a href="/calendar/' . $ymd . '/1">' . '<p class="day_part m-0 pt-1">1部' . '</a>' . $one_part_count .'</p>';
 
     // 2部のリンク
-    $html[] = '<a href="/calendar/' . $ymd . '/2">' . '<p class="day_part m-0 pt-1">2部' . '</a> '. $two_part_count .'</p>';
+    $html[] = '<a href="/calendar/' . $ymd . '/2">' . '<p class="day_part m-0 pt-1">2部' . '</a>' . $two_part_count .'</p>';
 
     // 3部のリンク
-    $html[] = '<a href="/calendar/' . $ymd . '/3">' . '<p class="day_part m-0 pt-1">3部 '. '</a> '.  $three_part_count .'</p>';
+    $html[] = '<a href="/calendar/' . $ymd . '/3">' . '<p class="day_part m-0 pt-1">3部' . '</a>' . $three_part_count .'</p>';
     $html[] = '</div>';
 
     return implode("", $html);
