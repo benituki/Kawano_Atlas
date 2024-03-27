@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="vh-100 d-flex" style="align-items:center; justify-content:center;">
+  <div class="fixed-header">
   <div class="w-50 m-auto">
     <p style="font-size: 20px;"><span>{{ $date }}</span><span class="ml-3">{{ $part }}部</span></p>
     <div class="users-tre" style="background-color: #fff; padding:2%; box-shadow: 0 20px 20px rgba(0, 0, 0, 0.16); border-radius: 10px;">
@@ -26,5 +27,6 @@
       </table>
     </div>
   </div>
+</div>
 </div>
 @endsection

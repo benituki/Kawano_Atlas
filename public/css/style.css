@@ -514,7 +514,14 @@ margin-top: 20px;
 }
 .users-table tr:nth-child(odd) {
   background-color: #ffffff; /* 奇数行の背景色 */
-
 }
+
+.fixed-header {
+  position: fixed; /* 要素を画面の上部に固定 */
+  top: 0; /* 画面上端に配置 */
+  left: 0; /* 左端に配置 */
+  width: 100%; /* 画面幅いっぱいに広げる */
+  padding: 10px; /* 余白を設定 */
+  }
 
 
