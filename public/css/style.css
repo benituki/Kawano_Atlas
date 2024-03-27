@@ -29,16 +29,17 @@ li{
 
 /* サイドバー */
 .sidebar{
-  position: fixed; /* サイドバーを固定位置に配置 */
-  top: 0; /* 画面上端からの位置 */
-  left: 0; /* 画面左端からの位置 */
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 200px;
-  height: 100%; /* 画面の高さいっぱいにサイドバーを広げる */
+  height: 100%;
   background-color: #03AAD2;
   font-weight: bold;
 }
 .main-container{
   width:100%;
+  margin-left: 220px;
 }
 .sidebar p a{
   color:#FFF;
