@@ -271,6 +271,16 @@ margin-top: 20px;
   color:#FFF;
   display: inline-block;
 }
+.edit-modal-open:hover{
+  color:#000000;
+  background-color: #a1b5ca;
+  text-decoration: none;
+}
+.detail:hover{
+  color:#000000;
+  background-color: #ce9da2;
+  text-decoration: none;
+}
 .modal-inner-body textarea{
   height:150px;
   resize:none;
