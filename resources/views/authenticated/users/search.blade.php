@@ -54,7 +54,7 @@
     </div>
     @endforeach
   </div>
-  <div class="search_area w-25 border">
+  <div class="search_area border">
     <div class="all_search">
       <p>検索</p>
       <div class="search_keyword">

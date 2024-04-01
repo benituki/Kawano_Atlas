@@ -443,6 +443,10 @@ margin-top: 20px;
 .search_area select option {
   background-color: white; /* オプションの背景色を白に設定 */
 }
+.search_area{
+  width: 0 auto; /* 画面幅の90%に設定 */
+  padding: 2%;
+}
 .search{
   margin-top: 15px;
 }
