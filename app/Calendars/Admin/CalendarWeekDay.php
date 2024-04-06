@@ -47,16 +47,16 @@ class CalendarWeekDay{
                             ->first();
     $three_part_count = $three_part_settings ? $three_part_settings->users->count() : 0;
 
-    $html[] = '<div class="text-left">';
+    $html[] = '<div class="">';
 
     // 1部のリンク
-    $html[] = '<a href="/calendar/' . $ymd . '/1">' . '<p class="day_part m-0 pt-1">1部' . '</a>' . $one_part_count .'</p>';
+    $html[] = '<p class="day_part m-0 pt-1"> <a href="/calendar/' . $ymd . '/1" style="margin-right: 50px;">' . '1部' . '</a>' . $one_part_count . '</p>' ;
 
     // 2部のリンク
-    $html[] = '<a href="/calendar/' . $ymd . '/2">' . '<p class="day_part m-0 pt-1">2部' . '</a>' . $two_part_count .'</p>';
+    $html[] = '<p class="day_part m-0 pt-1"> <a href="/calendar/' . $ymd . '/2" style="margin-right: 50px;">' . '2部' . '</a>' . $two_part_count . '</p>' ;
 
     // 3部のリンク
-    $html[] = '<a href="/calendar/' . $ymd . '/3">' . '<p class="day_part m-0 pt-1">3部' . '</a>' . $three_part_count .'</p>';
+    $html[] = '<p class="day_part m-0 pt-1"> <a href="/calendar/' . $ymd . '/3" style="margin-right: 50px;">' . '3部' . '</a>' . $three_part_count . '</p>' ;
     $html[] = '</div>';
 
     return implode("", $html);
