@@ -17,33 +17,40 @@ class PostsController extends Controller
 {
     // 投稿の一覧を表示
     public function show(Request $request){
+        // 全ての投稿データを取得
         $posts = Post::with('user', 'postComments')->get();
+        // メインカテゴリーとサブカテゴリーのデータを取得
         $categories = MainCategory::get();
         $subCategories = SubCategory::get();
+        // Like モデルと Post モデルのインスタンスを作成
         $like = new Like;
         $post_comment = new Post;
-    
-        if(!empty($request->keyword)){
+        if (!empty($request->keyword)) {
+            // キーワード検索の場合の処理
             $posts = Post::with('user', 'postComments')
-                ->where('post_title', 'like', '%'.$request->keyword.'%')
-                ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
+            ->where('post_title', 'like', '%' . $request->keyword . '%')
+            ->orWhereHas('subCategories', function ($query) use ($request) {
+                $query->where('sub_category', 'like', $request->keyword );
+            })
+            ->orWhere('post', 'like', '%' . $request->keyword . '%')
+            ->get();
         } else if($request->category_word){
-            // Get the subcategory by its id
+            // カテゴリー検索の場合の処理
             $subcategory = SubCategory::findOrFail($request->category_word);
-            // Get the posts related to the subcategory
             $posts = $subcategory->posts()->with('user', 'postComments')->get();
         } else if($request->like_posts){
+             // いいねした投稿を表示する場合の処理
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
                 ->whereIn('id', $likes)->get();
         } else if($request->my_posts){
+            // 自分の投稿を表示する場合の処理
             $posts = Post::with('user', 'postComments')
                 ->where('user_id', Auth::id())->get();
         }
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'subCategories', 'like', 'post_comment'));
     }
-    
-    
+
 
     // 投稿の詳細を表示
     public function postDetail($post_id){
