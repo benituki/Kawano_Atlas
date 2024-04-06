@@ -26,8 +26,8 @@ class CalendarView{
     $html[] = '<th>水</th>';
     $html[] = '<th>木</th>';
     $html[] = '<th>金</th>';
-    $html[] = '<th>土</th>';
-    $html[] = '<th>日</th>';
+    $html[] = '<th style="color: blue;">土</th>';
+    $html[] = '<th style="color: red;">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -59,7 +59,7 @@ class CalendarView{
             $reservePart = "3";
           }
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'. $reservePart .'参加'.'</p>';
+            $html[] = '<p class="m-auto p-0 w-75">'. $reservePart .'部参加'.'</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" data-target="modal" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" part= '.$reservePart.'>'. 'リモ'.$reservePart .'部'.'</button>';
@@ -68,7 +68,7 @@ class CalendarView{
         }else{
           // $keyと$valueの要素が一致していない。($getDate,getPart)その中で一番少ないgetPartを出力する必要がある。
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay() && $day->everyDay() < date('Y-m-d')){
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">予約受付終了';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">受付終了';
           }else{
             $html[] = $day->selectPart($day->everyDay());
           }
