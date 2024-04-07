@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
-
+use App\Http\Requests\BulletinBoard\registerRequest;
 use App\Models\Users\Subjects;
 
 class RegisterController extends Controller
@@ -57,24 +57,8 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(registerRequest $request)
     {
-        // validation
-        $request->validate([
-            'over_name' => 'required|string|max:10',
-            'under_name' => 'required|string|max:10',
-            'over_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u|max:30',
-            'under_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョーー]+$/u|max:30',
-            'mail_address' => 'required|max:100|email|unique:users',
-            'sex' => 'required|in:1,2,3',
-            'old_year' => 'required|max:' . date('Y'), // 2000年から今年までの範囲
-            'old_month' => 'required|min:1|max:12', // 1から12の範囲
-            'old_day' => 'required|min:1|max:31', // 1から31の範囲
-            'role' => 'required|in:1,2,3,4',
-            'password' => 'required|max:30|min:8'
-        ]);
-
-
         DB::beginTransaction();
 
         try{
@@ -100,7 +84,7 @@ class RegisterController extends Controller
             $user->subjects()->attach($subjects);
             DB::commit();
             return view('auth.login.login');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('loginView')->withInput()->withErrors(['error' => 'ユーザーの登録に失敗しました。']);
         }
