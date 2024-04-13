@@ -91,9 +91,9 @@
           <label style="font-size:13px">その他</label>
         </div>
         <div class="mt-3">
-          @if ($errors->has('old_year'))
+          @if ($errors->has('birth_day'))
           <div class="error_message">
-              <strong>{{ $errors->first('old_year') }}</strong>
+              <strong>{{ $errors->first('birth_day') }}</strong>
           </div>
           @endif
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
@@ -126,11 +126,6 @@
             <option value="2009">2009</option>
             <option value="2010">2010</option>
           </select>
-          @if ($errors->has('old_month'))
-          <div class="error_message">
-              <strong>{{ $errors->first('old_month') }}</strong>
-          </div>
-          @endif
           <label style="font-size:13px">年</label>
           <select class="old_month" name="old_month">
             <option value="none">-----</option>

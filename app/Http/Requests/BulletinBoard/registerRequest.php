@@ -16,6 +16,18 @@ class registerRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $data = $this->input(); // リクエストデータを取得する
+    
+        // 生年月日を整形
+        $birth_day = date('Y-m-d', strtotime($data['old_year'] . '-' . $data['old_month'] . '-' . $data['old_day']));
+        
+        $this->merge([
+            'birth_day' => $birth_day
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -30,9 +42,7 @@ class registerRequest extends FormRequest
             'under_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョーー]+$/u|max:30',
             'mail_address' => 'required|max:100|email|unique:users',
             'sex' => 'required|in:1,2,3',
-            'old_year' => 'required|after:2000', // 2000年から今年までの範囲
-            'old_month' => 'required|min:1|max:12', // 1から12の範囲
-            'old_day' => 'required|min:1|max:31', // 1から31の範囲
+            'birth_day' => 'required|date_format:Y-m-d|after:2000-01-01|before:today',
             'role' => 'required|in:1,2,3,4',
             'password' => 'required|max:30|min:8'
         ];
@@ -48,9 +58,10 @@ class registerRequest extends FormRequest
             'over_name_kana.required' => 'セイは必須です。',
             'over_name_kana.regex' => 'セイはカタカナで入力してください。',
             'over_name_kana.max' => 'セイは30文字以内で入力してください。',
-            'under_name_kana.required' => 'セイは必須です。',
-            'under_name_kana.regex' => 'セイはカタカナで入力してください。',
-            'under_name_kana.max' => 'セイは30文字以内で入力してください。',
+            'under_name_kana.required' => 'メイは必須です。',
+            'under_name_kana.regex' => 'メイはカタカナで入力してください。',
+            'under_name_kana.max' => 'メイは30文字以内で入力してください。',
+            'birth_day.after' => '生年月日は2000年1月1日からで入力。',
         ];
     }
 }
